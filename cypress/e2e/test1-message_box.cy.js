@@ -19,7 +19,7 @@ describe('Authentication Flow', () => {
     const uniqueBotName = `TestBot_${Date.now()}`;
     cy.createBot(uniqueBotName);
 
-    cy.wait(1000);
+    cy.wait(10000);
 
     cy.searchForMessages('message');
 
