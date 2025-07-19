@@ -37,7 +37,7 @@ class DocumentAutomation {
         cy.wait(3000)
 
         cy.get('@iframe').within(() => {
-            // Fill the Name field
+           
             cy.get('input[aria-label="Name"]')
                 .should('be.visible')
                 .clear()
@@ -48,23 +48,22 @@ class DocumentAutomation {
         });
 
 
-        // First, locate the iframe and get its body
-        // First get the iframe and alias its body content
+       
         cy.get('.modulepage-frame').then(($iframe) => {
             const $body = $iframe.contents().find('body');
             cy.wrap($body).as('iframeBody');
         });
 
-        // Now use the aliased iframe body to interact with elements
+     
         cy.get('@iframeBody').then(($body) => {
             cy.wrap($body).within(() => {
-                // Target the Document Type dropdown specifically
+               
                 cy.contains('.field-label__label-content', 'Document Type')
                     .parents('.field-label')
-                    .find('[data-name="domainId"]') // More specific selector using data-name
-                    .click({ force: true }); // Force click in case element is covered
+                    .find('[data-name="domainId"]') 
+                    .click({ force: true }); 
 
-                // Wait for dropdown options to appear
+                
                 cy.get('.rio-select-input-dropdown-option-label', { timeout: 10000 })
                     .should('be.visible')
                     .contains('User-defined')
@@ -106,7 +105,7 @@ class DocumentAutomation {
             cy.get('input[aria-label="Field name"]')
                 .should('be.visible')
                 .clear()
-                .type('test field', { delay: 50 }); // Typing with slight delay
+                .type('test field', { delay: 50 }); 
 
             cy.get('input[aria-label="Field label"]').should('be.visible').clear().type(fieldLabel, { delay: 50 });
             cy.get('button[aria-label="Submit"]').click();
